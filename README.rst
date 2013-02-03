@@ -20,6 +20,26 @@ DESCRIPTION
 ==============
 Add the backend by dynamic.
 
+THIS MODULE IS PROOF OF CONCEPT.
+
+
+EXAMPLE
+============
+
+        ::
+
+                import backendutils;
+                backend default {
+                    .host = "192.168.1.1";
+                    .port = "8080";
+                }
+                sub vcl_init{
+                    backendutils.initsimple(default);
+                }
+                sub vcl_recv{
+                    set req.backend = backendutils.createsimple("dynamicBackend","192.168.1.199","88");
+                }
+
 FUNCTIONS
 ============
 
